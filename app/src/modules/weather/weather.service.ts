@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { WeatherRepository } from '../db/repositories/weather.repository';
-import { WeatherApiService } from '../weather-api/weather-api.service';
 import { GetWeatherDto } from 'src/shared/dto/weather/get';
 import { FetchWeatherDto } from 'src/shared/dto/weather/post';
 import { Weather } from 'src/shared/entities/weather';

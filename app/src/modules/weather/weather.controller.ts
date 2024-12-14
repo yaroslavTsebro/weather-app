@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseInterceptors, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseInterceptors } from '@nestjs/common';
 import { GetWeatherDto } from 'src/shared/dto/weather/get';
 import { FetchWeatherDto } from 'src/shared/dto/weather/post';
 import { WeatherService } from './weather.service';
