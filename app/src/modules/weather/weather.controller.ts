@@ -1,4 +1,23 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseInterceptors, ValidationPipe } from '@nestjs/common';
+import { GetWeatherDto } from 'src/shared/dto/weather/get';
+import { FetchWeatherDto } from 'src/shared/dto/weather/post';
+import { WeatherService } from './weather.service';
+import { WeatherResponseInterceptor } from 'src/shared/interceptors/weather-response';
+
 
 @Controller('weather')
-export class WeatherController {}
+export class WeatherController {
+  constructor(private readonly weatherService: WeatherService) {}
+
+  @Post()
+  async fetchAndSaveWeather(@Body() fetchWeatherDto: FetchWeatherDto) {
+    return this.weatherService.fetchAndSaveWeatherData(fetchWeatherDto);
+  }
+
+  @Get()
+  @UseInterceptors(WeatherResponseInterceptor)
+  async getWeather(@Query(new ValidationPipe({ transform: true })) getWeatherDto: GetWeatherDto) {
+    return this.weatherService.getWeatherData(getWeatherDto);
+  }
+}
+

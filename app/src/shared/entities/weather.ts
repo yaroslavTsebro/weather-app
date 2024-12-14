@@ -1,6 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column } from 'typeorm';
 import { IWeather } from '../contracts/entity/weather';
 
+export enum WeatherPart {
+  CURRENT = 'current',
+  MINUTELY = 'minutely',
+  HOURLY = 'hourly',
+  DAILY = 'daily',
+  ALERTS = 'alerts',
+}
+
 @Entity()
 export class Weather implements IWeather {
   @PrimaryGeneratedColumn()
@@ -11,9 +19,6 @@ export class Weather implements IWeather {
 
   @Column()
   lon: number;
-
-  @Column({ nullable: true })
-  part?: string;
 
   @Column({ type: 'jsonb' })
   data: any;
