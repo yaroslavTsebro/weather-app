@@ -4,6 +4,7 @@ import { WeatherModule } from './weather/weather.module';
 import { WeatherApiModule } from './weather-api/weather-api.module';
 import { ConfigModule } from '@nestjs/config';
 import { RepositoriesModule } from './db/repositories/repositories.module';
+import { LoggerModule } from './logger/logger.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { RepositoriesModule } from './db/repositories/repositories.module';
     WeatherModule,
     WeatherApiModule,
     ConfigModule,
-    RepositoriesModule
+    RepositoriesModule,
+    LoggerModule,
   ]
 })
 export class AppModule { }
