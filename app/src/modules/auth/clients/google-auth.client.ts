@@ -1,14 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { OAuth2Client, TokenPayload } from 'google-auth-library';
 import { AuthGrantTokenExpiredException } from 'src/shared/exceptions/auth/auth-grant-token-expired.exception';
 
 @Injectable()
 export class GoogleAuthClient extends OAuth2Client {
-  constructor() {
+  constructor(private readonly configService: ConfigService) {
     super({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      redirectUri: process.env.GOOGLE_CLIENT_REDIRECT_URI,
+      clientId: configService.get<string>('GOOGLE_CLIENT_ID'),
+      clientSecret: configService.get<string>('GOOGLE_CLIENT_SECRET'),
+      redirectUri: configService.get<string>('GOOGLE_CLIENT_REDIRECT_URI'),
     });
   }
 

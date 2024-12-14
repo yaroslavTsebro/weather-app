@@ -1,7 +1,7 @@
 import { Injectable, ConflictException, Inject } from '@nestjs/common';
 import { AuthProviderRepository } from 'src/modules/db/repositories/auth-provider.repository';
 import { JwtService } from 'src/modules/system/jwt/jwt.service';
-import { UsersService } from 'src/modules/user/user.service';
+import { UserService } from 'src/modules/user/user.service';
 import { AuthProviderType, IAuthProvider } from 'src/shared/contracts/entity/auth-provider';
 import { IUser } from 'src/shared/contracts/entity/user';
 import { IAuthStrategy } from 'src/shared/contracts/modules/auth';
@@ -12,7 +12,7 @@ import { TokenResponse, AuthTokenPayload } from 'src/shared/dto/token';
 @Injectable()
 export class EmailSignUpStrategy implements IAuthStrategy<EmailAuthPayload, TokenResponse> {
   constructor(
-    private readonly usersService: UsersService,
+    private readonly usersService: UserService,
     private readonly jwtService: JwtService,
     @Inject(HASH_SERVICE) private readonly hashService: IHashService,
   ) { }

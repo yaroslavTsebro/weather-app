@@ -34,6 +34,18 @@ export class EnvVariables implements IEnvVariables {
   @IsNotEmpty()
   @IsString()
   WEATHER_API_KEY: string;
+
+  @IsNotEmpty()
+  @IsString()
+  GOOGLE_CLIENT_ID: string;
+
+  @IsNotEmpty()
+  @IsString()
+  GOOGLE_CLIENT_SECRET: string;
+
+  @IsNotEmpty()
+  @IsString()
+  GOOGLE_CLIENT_REDIRECT_URI: string;
 }
 
 export function validateEnv(config: Record<string, unknown>) {

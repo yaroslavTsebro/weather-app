@@ -9,6 +9,10 @@ export class UserRepository {
   async findByEmail(email: string): Promise<User | null> {
     return this.dao.findOne({ where: { email }, relations: ['authProvider'] });
   }
+  
+  async findById(id: number): Promise<User | null> {
+    return this.dao.findOne({ where: { id }, relations: ['authProvider'] });
+  }
 
   async save(user: User): Promise<User> {
     const userEnt = this.dao.create(user);

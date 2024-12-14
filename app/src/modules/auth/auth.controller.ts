@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { GoogleSignInPayload } from 'src/shared/dto/auth/google-sign-in.dto';
 import { RefreshPayload, TokenResponse } from 'src/shared/dto/token';
 import { EmailSignInStrategy } from './strategies/email/sign-in.strategy';
@@ -41,5 +41,10 @@ export class AuthController {
   @Post('/refresh')
   async refresh(@Body() payload: RefreshPayload): Promise<TokenResponse> {
     return this.authService.refreshTokens(payload);
+  }
+
+  @Get('/google/callback')
+  async googleRedirect(@Query('code') code: string) {
+    return code;
   }
 }

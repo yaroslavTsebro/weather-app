@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AuthProviderRepository } from 'src/modules/db/repositories/auth-provider.repository';
 import { JwtService } from 'src/modules/system/jwt/jwt.service';
-import { UsersService } from 'src/modules/user/user.service';
+import { UserService } from 'src/modules/user/user.service';
 import { AuthProviderType, IAuthProvider } from 'src/shared/contracts/entity/auth-provider';
 import { IAuthStrategy } from 'src/shared/contracts/modules/auth';
 import { TokenResponse, AuthTokenPayload } from 'src/shared/dto/token';
@@ -13,7 +13,7 @@ import { GoogleSignInPayload } from 'src/shared/dto/auth/google-sign-in.dto';
 export class GoogleSignUpStrategy implements IAuthStrategy<GoogleSignInPayload, TokenResponse> {
   constructor(
     private readonly googleAuthClient: GoogleAuthClient,
-    private readonly usersService: UsersService,
+    private readonly usersService: UserService,
     private readonly authProviderRepository: AuthProviderRepository,
     private readonly jwtService: JwtService,
   ) { }

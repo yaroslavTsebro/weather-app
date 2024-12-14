@@ -9,9 +9,10 @@ import { HashModule } from '../system/hash/hash.module';
 import { UserModule } from '../user/user.module';
 import { JwtModule } from '../system/jwt/jwt.module';
 import { AuthService } from './auth.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [HashModule, UserModule, JwtModule],
+  imports: [HashModule, UserModule, JwtModule, ConfigModule],
   providers: [
     GoogleSignInStrategy,
     GoogleSignUpStrategy,

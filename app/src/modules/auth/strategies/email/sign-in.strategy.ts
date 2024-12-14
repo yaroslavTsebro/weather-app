@@ -1,7 +1,7 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthProviderRepository } from 'src/modules/db/repositories/auth-provider.repository';
 import { JwtService } from 'src/modules/system/jwt/jwt.service';
-import { UsersService } from 'src/modules/user/user.service';
+import { UserService } from 'src/modules/user/user.service';
 import { AuthProviderType } from 'src/shared/contracts/entity/auth-provider';
 import { IAuthStrategy } from 'src/shared/contracts/modules/auth';
 import { HASH_SERVICE, IHashService } from 'src/shared/contracts/modules/hash';
@@ -12,7 +12,7 @@ import { UserNotFoundByEmailException } from 'src/shared/exceptions/user/user-no
 @Injectable()
 export class EmailSignInStrategy implements IAuthStrategy<EmailAuthPayload, TokenResponse> {
   constructor(
-    private readonly usersService: UsersService,
+    private readonly usersService: UserService,
     private readonly authProviderRepository: AuthProviderRepository,
     private readonly jwtService: JwtService,
     @Inject(HASH_SERVICE) private readonly hashService: IHashService,
