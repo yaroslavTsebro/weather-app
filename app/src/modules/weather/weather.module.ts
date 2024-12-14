@@ -3,7 +3,7 @@ import { WeatherService } from './weather.service';
 import { WeatherController } from './weather.controller';
 import { ScheduleModule } from '@nestjs/schedule';
 import { WeatherCleanupService } from './weather-cleanup.service';
-import { WeatherApiModule } from '../weather-api/weather-api.module';
+import { WeatherApiModule } from '../system/weather-api/weather-api.module';
 import { DbModule } from '../db/db.module';
 
 @Module({
