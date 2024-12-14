@@ -3,6 +3,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { lastValueFrom } from 'rxjs';
 import { Constants } from 'src/shared/constants';
+import { IEnvVariables } from 'src/shared/contracts/modules/config';
 import { IWeatherApiService } from 'src/shared/contracts/modules/weather-api';
 import { FetchWeatherDto } from 'src/shared/dto/weather/post';
 
@@ -12,7 +13,7 @@ export class WeatherApiService implements IWeatherApiService {
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService<IEnvVariables>
   ) {
     this.apiKey = this.configService.get<string>('WEATHER_API_KEY');
   }

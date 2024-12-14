@@ -1,14 +1,15 @@
 import { plainToInstance } from 'class-transformer';
 import { IsNotEmpty, IsString, validateSync, IsNumber } from 'class-validator';
+import { IEnvVariables } from 'src/shared/contracts/modules/config';
 
-export class EnvVariables {
-  @IsNotEmpty()
-  @IsString()
-  PORT: string;
-
+export class EnvVariables implements IEnvVariables {
   @IsNotEmpty()
   @IsNumber()
-  HOST: number;
+  PORT: number;
+
+  @IsNotEmpty()
+  @IsString()
+  HOST: string;
 
   @IsNotEmpty()
   @IsString()

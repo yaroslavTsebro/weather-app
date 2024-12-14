@@ -3,14 +3,15 @@ import { AppModule } from './modules/app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import { IEnvVariables } from './shared/contracts/modules/config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
 
-  const configService = app.get(ConfigService);
+  const configService = app.get(ConfigService<IEnvVariables>);
 
-  const PORT = configService.get<number>('PORT') || 3000;
-  const HOST = configService.get<string>('HOST') || 'localhost';
+  const PORT = configService.get<number>('PORT', 3000);
+  const HOST = configService.get<string>('HOST', 'localhost');
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
