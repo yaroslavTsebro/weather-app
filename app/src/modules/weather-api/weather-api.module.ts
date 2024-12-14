@@ -12,6 +12,6 @@ import { WEATHER_API_SERVICE } from 'src/shared/contracts/modules/weather-api';
       useClass: WeatherApiService
     }
   ],
-  exports: [WeatherApiService]
+  exports: [WEATHER_API_SERVICE]
 })
 export class WeatherApiModule { }

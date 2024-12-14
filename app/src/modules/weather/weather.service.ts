@@ -4,12 +4,13 @@ import { WeatherApiService } from '../weather-api/weather-api.service';
 import { GetWeatherDto } from 'src/shared/dto/weather/get';
 import { FetchWeatherDto } from 'src/shared/dto/weather/post';
 import { Weather } from 'src/shared/entities/weather';
+import { IWeatherApiService, WEATHER_API_SERVICE } from 'src/shared/contracts/modules/weather-api';
 
 @Injectable()
 export class WeatherService {
   constructor(
     @Inject() private readonly weatherRepository: WeatherRepository,
-    private readonly weatherApiService: WeatherApiService,
+    @Inject(WEATHER_API_SERVICE) private readonly weatherApiService: IWeatherApiService,
   ) { }
 
   async fetchAndSaveWeatherData(dto: FetchWeatherDto) {

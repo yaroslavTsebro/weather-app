@@ -26,8 +26,8 @@ export class WeatherApiService implements IWeatherApiService {
 
     const response = await lastValueFrom(this.httpService.get(Constants.WEATHER_API_URL + '/data/3.0/onecall', { params }));
 
-    if(response.status !== 200) { throw new InternalServerErrorException() }
+    if (response.status !== 200) { throw new InternalServerErrorException() }
 
-return response.data;
+    return response.data;
   }
 }

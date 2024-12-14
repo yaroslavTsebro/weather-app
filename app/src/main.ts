@@ -8,8 +8,10 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || 3000;
-  
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
+  app.useGlobalPipes(
+    new ValidationPipe({ transform: true })
+  );
 
   console.log(`Application is running on: http://localhost:${port}`);
   await app.listen(port);
