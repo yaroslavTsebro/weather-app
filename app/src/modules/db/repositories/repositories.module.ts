@@ -3,11 +3,13 @@ import { WeatherRepository } from './weather.repository';
 import { DbModule } from '../db.module';
 import { UserRepository } from './user.repository';
 import { AuthProviderRepository } from './auth-provider.repository';
+import { FavoriteLocation } from 'src/shared/entities/favorite-location';
 
 const repositories = [
   WeatherRepository,
   UserRepository,
-  AuthProviderRepository
+  AuthProviderRepository,
+  FavoriteLocation
 ];
 
 @Global()

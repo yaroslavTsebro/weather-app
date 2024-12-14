@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm';
 import { AuthProvider } from './auth-provider';
 import { IUser } from '../contracts/entity/user';
+import { FavoriteLocation } from './favorite-location';
 
 @Entity()
 export class User implements IUser {
@@ -16,4 +17,7 @@ export class User implements IUser {
   @OneToOne(() => AuthProvider, (authProvider) => authProvider.user, { cascade: true })
   @JoinColumn()
   authProvider: AuthProvider;
+
+  @OneToMany(() => FavoriteLocation, (favoriteLocation) => favoriteLocation.user, { cascade: true })
+  favoriteLocations: FavoriteLocation[];
 }
