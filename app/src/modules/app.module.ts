@@ -23,7 +23,7 @@ import { FavoriteLocationModule } from './favorite-location/favorite-location.mo
     JwtModule,
     UserModule,
     HashModule,
-    FavoriteLocationModule
+    FavoriteLocationModule,
   ]
 })
 export class AppModule { }
