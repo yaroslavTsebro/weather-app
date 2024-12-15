@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { JwtModule } from './system/jwt/jwt.module';
 import { UserModule } from './user/user.module';
 import { HashModule } from './system/hash/hash.module';
+import { FavoriteLocationModule } from './favorite-location/favorite-location.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { HashModule } from './system/hash/hash.module';
     AuthModule,
     JwtModule,
     UserModule,
-    HashModule
+    HashModule,
+    FavoriteLocationModule
   ]
 })
 export class AppModule { }
