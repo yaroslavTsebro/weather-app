@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AuthProviderRepository } from 'src/modules/db/repositories/auth-provider.repository';
+import { AuthProviderRepository } from 'src/modules/system/db/repositories/auth-provider.repository';
 import { JwtService } from 'src/modules/system/jwt/jwt.service';
 import { AuthProviderType, IAuthProvider } from 'src/shared/contracts/entity/auth-provider';
 import { IAuthStrategy } from 'src/shared/contracts/modules/auth';

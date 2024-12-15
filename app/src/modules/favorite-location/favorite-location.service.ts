@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PaginationResult } from 'src/shared/dto/pagination.dto';
 import { FavoriteLocation } from 'src/shared/entities/favorite-location';
-import { FavoriteLocationRepository } from '../db/repositories/favorite-location.repository';
+import { FavoriteLocationRepository } from '../system/db/repositories/favorite-location.repository';
 import { CreateFavoriteLocationDto } from 'src/shared/dto/favorite/create';
 
 

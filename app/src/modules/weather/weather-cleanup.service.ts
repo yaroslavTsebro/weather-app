@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { WeatherRepository } from '../db/repositories/weather.repository';
+import { WeatherRepository } from '../system/db/repositories/weather.repository';
 
 @Injectable()
 export class WeatherCleanupService {

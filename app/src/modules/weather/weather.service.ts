@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { WeatherRepository } from '../db/repositories/weather.repository';
+import { WeatherRepository } from '../system/db/repositories/weather.repository';
 import { GetWeatherDto } from 'src/shared/dto/weather/get';
 import { FetchWeatherDto } from 'src/shared/dto/weather/post';
 import { Weather } from 'src/shared/entities/weather';

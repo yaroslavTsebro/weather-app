@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { DbModule } from './db/db.module';
+import { DbModule } from './system/db/db.module';
 import { WeatherModule } from './weather/weather.module';
 import { WeatherApiModule } from './system/weather-api/weather-api.module';
 import { ConfigModule } from '@nestjs/config';
-import { RepositoriesModule } from './db/repositories/repositories.module';
+import { RepositoriesModule } from './system/db/repositories/repositories.module';
 import { LoggerModule } from './system/logger/logger.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from './system/jwt/jwt.module';
