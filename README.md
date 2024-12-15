@@ -15,7 +15,7 @@ Extra:
 
 What could be done to improve code quality:
 1. move using nest exceptions into using custom exceptions (now its 30%)
-2. user more interfaces 
+2. tie more to interfaces 
 3. add more tests
 4. check code after some amount of time and make changes
 5. create separate env's
