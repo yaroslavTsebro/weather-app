@@ -21,7 +21,8 @@ What could be done to improve code quality:
 5. create separate env's
 6. configure ci/cd (i could do it me)
 
-Task
+Task:
+
 Створити проджект на nest який буде фетчити дані із
 https://openweathermap.org/api/one-call-3#current
 І записувати в БД
