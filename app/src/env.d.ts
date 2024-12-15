@@ -13,5 +13,8 @@ declare namespace NodeJS {
     GOOGLE_CLIENT_ID: string;
     GOOGLE_CLIENT_SECRET: string;
     GOOGLE_CLIENT_REDIRECT_URI: string;
+
+    JWT_ACCESS_SECRET: string;
+    JWT_REFRESH_SECRET: string;
   }
 }

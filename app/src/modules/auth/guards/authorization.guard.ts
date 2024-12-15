@@ -11,7 +11,7 @@ export class AuthorizationGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
 
-    const accessToken = request.cookies['accessToken'];
+    const accessToken = request.cookies['Authorization'];
     
     if (!accessToken) {
       throw new UnauthorizedException('No access token in cookies');
