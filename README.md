@@ -19,7 +19,7 @@ What could be done to improve code quality:
 3. add more tests
 4. check code after some amount of time and make changes
 5. create separate env's
-6. configure ci/cd (i could do it me)
+6. configure ci/cd (i could do it)
 
 Task:
 
