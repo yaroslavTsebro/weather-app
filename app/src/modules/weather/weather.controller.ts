@@ -17,7 +17,6 @@ export class WeatherController {
   @Get()
   @UseInterceptors(WeatherResponseInterceptor)
   async getWeather(@Query() getWeatherDto: GetWeatherDto) {
-    console.dir(getWeatherDto, {depth: Infinity})
     return this.weatherService.getWeatherData(getWeatherDto);
   }
 }
