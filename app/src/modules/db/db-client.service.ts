@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { IEnvVariables } from 'src/shared/contracts/modules/config';
+import { AuthProvider } from 'src/shared/entities/auth-provider';
+import { FavoriteLocation } from 'src/shared/entities/favorite-location';
+import { User } from 'src/shared/entities/user';
 import { Weather } from 'src/shared/entities/weather';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
@@ -18,6 +21,9 @@ export class DbClient extends DataSource {
       port: configService.get<number>('DB_PORT'),
       entities: [
         Weather,
+        User,
+        AuthProvider,
+        FavoriteLocation
       ],
       synchronize: true,
     } satisfies DataSourceOptions;

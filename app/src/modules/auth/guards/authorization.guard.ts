@@ -11,14 +11,15 @@ export class AuthorizationGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
 
-    const accessToken = request.cookies['Authorization'];
+    const accessToken = request.headers['authorization'];
     
     if (!accessToken) {
-      throw new UnauthorizedException('No access token in cookies');
+      throw new UnauthorizedException('No access token in headers');
     }
 
     try {
-      const payload = verify(accessToken, this.configService.get<string>('JWT_ACCESS_SECRET')) as { sub: string; email: string; };
+      const [_, token] = accessToken.split(' ');
+      const payload = verify(token, this.configService.get<string>('JWT_ACCESS_SECRET')) as { sub: string; email: string; };
       const user = await this.userService.findById(+payload.sub);
 
       if (!user) { throw new UnauthorizedException('User not found'); }

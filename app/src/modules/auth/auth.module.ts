@@ -10,6 +10,7 @@ import { UserModule } from '../user/user.module';
 import { JwtModule } from '../system/jwt/jwt.module';
 import { AuthService } from './auth.service';
 import { ConfigModule } from '@nestjs/config';
+import { AuthorizationGuard } from './guards/authorization.guard';
 
 @Module({
   imports: [HashModule, UserModule, JwtModule, ConfigModule],
@@ -19,8 +20,10 @@ import { ConfigModule } from '@nestjs/config';
     EmailSignInStrategy,
     EmailSignUpStrategy,
     GoogleAuthClient,
-    AuthService
+    AuthService,
+    AuthorizationGuard
   ],
+  exports: [AuthorizationGuard],
   controllers: [AuthController]
 })
 export class AuthModule { }

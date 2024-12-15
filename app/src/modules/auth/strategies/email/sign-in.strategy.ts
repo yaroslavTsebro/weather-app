@@ -12,7 +12,7 @@ import { UserNotFoundByEmailException } from 'src/shared/exceptions/user/user-no
 @Injectable()
 export class EmailSignInStrategy implements IAuthStrategy<EmailAuthPayload, TokenResponse> {
   constructor(
-    private readonly usersService: UserService,
+    private readonly userService: UserService,
     private readonly authProviderRepository: AuthProviderRepository,
     private readonly jwtService: JwtService,
     @Inject(HASH_SERVICE) private readonly hashService: IHashService,
@@ -21,11 +21,11 @@ export class EmailSignInStrategy implements IAuthStrategy<EmailAuthPayload, Toke
   async authenticate(payload: EmailAuthPayload): Promise<TokenResponse> {
     const { email, password } = payload;
 
-    const user = await this.usersService.findByEmail(email);
+    const user = await this.userService.findByEmail(email);
 
     if (!user) { throw new UserNotFoundByEmailException(email) }
 
-    const authProvider = await this.authProviderRepository.findByPayloadAndType(user.email, AuthProviderType.EMAIL);
+    const authProvider = await this.authProviderRepository.findByUserAndType(user.id, AuthProviderType.EMAIL);
 
     if (!authProvider) { throw new UnauthorizedException('Email authentication not configured for this user.') }
 

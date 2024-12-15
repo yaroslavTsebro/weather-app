@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 import { User } from './user';
 import { AuthProviderType, IAuthProvider } from '../contracts/entity/auth-provider';
 
@@ -13,7 +13,6 @@ export class AuthProvider implements IAuthProvider {
   @Column()
   payload: string;
 
-  @ManyToOne(() => User, (user) => user.authProvider)
-  @JoinColumn()
+  @OneToOne(() => User, (user) => user.authProvider)
   user: User;
 }

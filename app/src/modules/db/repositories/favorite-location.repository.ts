@@ -8,12 +8,13 @@ export class FavoriteLocationRepository {
   constructor(private readonly dao: FavoriteLocationDao) { }
 
   async addFavorite(dto: CreateFavoriteLocationDto, userId: number): Promise<FavoriteLocation> {
-    return this.dao.create({
+    const entityToCreate = this.dao.create({
       lat: dto.lat,
       lon: dto.lon,
       part: dto.parts,
       user: { id: userId },
     });
+    return this.dao.save(entityToCreate);
   }
 
   async getFavoritesWithPagination(
@@ -22,6 +23,7 @@ export class FavoriteLocationRepository {
     limit: number,
   ): Promise<[FavoriteLocation[], number]> {
     const skip = (page - 1) * limit;
+    const result = await this.dao.find();
 
     return this.dao.findAndCount({
       where: { user: { id: userId } },

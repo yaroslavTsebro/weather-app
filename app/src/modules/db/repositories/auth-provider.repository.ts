@@ -14,6 +14,13 @@ export class AuthProviderRepository {
     });
   }
 
+  async findByUserAndType(id: number, type: AuthProviderType): Promise<AuthProvider | null> {
+    return this.dao.findOne({
+      where: { type, user: { id } },
+      relations: ['user'],
+    });
+  }
+
   async save(authProvider: AuthProvider): Promise<AuthProvider> {
     const authProviderEnt = this.dao.create(authProvider);
     return this.dao.save(authProviderEnt);

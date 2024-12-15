@@ -12,7 +12,7 @@ import { TokenResponse, AuthTokenPayload } from 'src/shared/dto/token';
 @Injectable()
 export class EmailSignUpStrategy implements IAuthStrategy<EmailAuthPayload, TokenResponse> {
   constructor(
-    private readonly usersService: UserService,
+    private readonly userService: UserService,
     private readonly jwtService: JwtService,
     @Inject(HASH_SERVICE) private readonly hashService: IHashService,
   ) { }
@@ -20,19 +20,21 @@ export class EmailSignUpStrategy implements IAuthStrategy<EmailAuthPayload, Toke
   async authenticate(payload: EmailAuthPayload): Promise<TokenResponse> {
     const { email, password } = payload;
 
-    const existingUser = await this.usersService.findByEmail(email);
+    const existingUser = await this.userService.findByEmail(email);
 
-    if (existingUser) { throw new ConflictException('User with this email already exists.')}
+    if (existingUser) { throw new ConflictException('User with this email already exists.') }
 
     const hashedPassword = await this.hashService.hash(password, 10)
 
-    const user = await this.usersService.create({
+    const user = await this.userService.create({
       email,
       authProvider: {
         type: AuthProviderType.EMAIL,
         payload: hashedPassword,
       } as IAuthProvider,
+      favoriteLocations: [],
     } as IUser);
+
 
     const tokenPayload = new AuthTokenPayload(user.id.toString(), user.email);
     const accessToken = this.jwtService.generateAccessToken(tokenPayload);

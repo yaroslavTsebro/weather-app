@@ -27,11 +27,11 @@ export class JwtService {
   }
 
   generateAccessToken(payload: AuthTokenPayload): string {
-    return this.sign(payload, this.accessTokenSecret, { expiresIn: '15m' });
+    return this.sign({ ...payload }, this.accessTokenSecret, { expiresIn: '15m' });
   }
 
   generateRefreshToken(payload: AuthTokenPayload): string {
-    return this.sign(payload, this.refreshTokenSecret, { expiresIn: '7d' });
+    return this.sign({ ...payload }, this.refreshTokenSecret, { expiresIn: '7d' });
   }
 
   verifyAccessToken(token: string): AuthTokenPayload {

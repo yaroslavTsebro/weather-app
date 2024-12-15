@@ -13,7 +13,7 @@ import { GoogleSignInPayload } from 'src/shared/dto/auth/google-sign-in.dto';
 export class GoogleSignUpStrategy implements IAuthStrategy<GoogleSignInPayload, TokenResponse> {
   constructor(
     private readonly googleAuthClient: GoogleAuthClient,
-    private readonly usersService: UserService,
+    private readonly userService: UserService,
     private readonly authProviderRepository: AuthProviderRepository,
     private readonly jwtService: JwtService,
   ) { }
@@ -24,7 +24,7 @@ export class GoogleSignUpStrategy implements IAuthStrategy<GoogleSignInPayload, 
     let user = (await this.authProviderRepository.findByPayloadAndType(userPayload.sub, AuthProviderType.GOOGLE))?.user;
 
     if (!user) {
-      user = await this.usersService.findByEmail(userPayload.email);
+      user = await this.userService.findByEmail(userPayload.email);
 
       if (user) {
         await this.authProviderRepository.save({
@@ -34,7 +34,7 @@ export class GoogleSignUpStrategy implements IAuthStrategy<GoogleSignInPayload, 
         } as IAuthProvider);
       } else {
 
-        user = await this.usersService.create({
+        user = await this.userService.create({
           email: userPayload.email,
           name: userPayload.given_name.concat(userPayload.family_name),
           authProvider: {

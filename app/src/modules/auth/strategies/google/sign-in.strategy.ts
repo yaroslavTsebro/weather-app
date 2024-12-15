@@ -13,7 +13,7 @@ import { UserNotFoundByEmailException } from 'src/shared/exceptions/user/user-no
 export class GoogleSignInStrategy implements IAuthStrategy<GoogleSignInPayload, TokenResponse> {
   constructor(
     private readonly googleAuthClient: GoogleAuthClient,
-    private readonly usersService: UserService,
+    private readonly userService: UserService,
     private readonly authProviderRepository: AuthProviderRepository,
     private readonly jwtService: JwtService,
   ) { }
@@ -26,7 +26,7 @@ export class GoogleSignInStrategy implements IAuthStrategy<GoogleSignInPayload, 
     let user = authProvider ? authProvider.user : null;
 
     if (!user) {
-      user = await this.usersService.findByEmail(email);
+      user = await this.userService.findByEmail(email);
 
       if (!user) { throw new UserNotFoundByEmailException(email); }
 
