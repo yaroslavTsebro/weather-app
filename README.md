@@ -32,6 +32,7 @@ https://openweathermap.org/api/one-call-3#current
 у відповіді
 Вимоги до проджекта
  - для GET АПІ використовувати interceptor nest для форматування відповіді у вигляді
+**IN SOME CASES RESPONSE CANT BE TRANSFORMED INTO THIS FORM (MY NOTE)**
 {
  "sunrise":1684926645,
  "sunset":1684977332,
